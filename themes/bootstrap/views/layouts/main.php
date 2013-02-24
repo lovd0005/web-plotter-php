@@ -22,6 +22,10 @@
                 array('label'=>'Home', 'url'=>array('/site/index')),
                 array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
                 array('label'=>'Contact', 'url'=>array('/site/contact')),
+                array('label'=>'gwplotter', 'url'=>array('/plotter/index')),
+                array('label'=>'Models', 'url'=>array('/models/index')),
+                array('label'=>'Modeltypes', 'url'=>array('/modeltypes/index')),
+                array('label'=>'Parameters', 'url'=>array('/parameters/index')),
                 array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
                 array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
             ),

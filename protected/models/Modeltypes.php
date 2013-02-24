@@ -1,20 +1,18 @@
 <?php
 
 /**
- * This is the model class for table "tbl_models".
+ * This is the model class for table "tbl_modeltypes".
  *
- * The followings are the available columns in table 'tbl_models':
+ * The followings are the available columns in table 'tbl_modeltypes':
  * @property integer $id
  * @property string $name
- * @property integer $type_id
- * @property integer $script_id
  */
-class Models extends CActiveRecord
+class Modeltypes extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return Models the static model class
+	 * @return Modeltypes the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -26,7 +24,7 @@ class Models extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'tbl_models';
+		return 'tbl_modeltypes';
 	}
 
 	/**
@@ -38,11 +36,10 @@ class Models extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('name', 'required'),
-			array('type_id, script_id', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, type_id, script_id', 'safe', 'on'=>'search'),
+			array('id, name', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -65,8 +62,6 @@ class Models extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'name' => 'Name',
-			'type_id' => 'Type',
-			'script_id' => 'Script',
 		);
 	}
 
@@ -83,8 +78,6 @@ class Models extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
-		$criteria->compare('type_id',$this->type_id);
-		$criteria->compare('script_id',$this->script_id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

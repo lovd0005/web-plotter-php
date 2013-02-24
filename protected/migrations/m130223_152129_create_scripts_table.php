@@ -4,12 +4,17 @@ class m130223_152129_create_scripts_table extends CDbMigration
 {
 	public function up()
 	{
+    $this->createTable('tbl_scripts', array(
+      'id' => 'pk',
+      'path' => 'string NOT NULL',
+    ));
 	}
 
 	public function down()
 	{
-		echo "m130223_152129_create_scripts_table does not support migration down.\n";
-		return false;
+    $this->dropTable('tbl_scripts');
+		echo "m130223_152129_create_scripts_table drop table tbl_scripts.\n";
+		return true;
 	}
 
 	/*

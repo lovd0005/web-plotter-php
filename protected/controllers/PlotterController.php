@@ -7,10 +7,10 @@ class PlotterController extends Controller
 		$this->render('index');
 	}
   
-  // public function actionPlot()
-  // {
-  //   $this->render('result')
-  // }
+  public function actionPlot()
+  {
+    $this->render('result');
+  }
 
 	// Uncomment the following methods and override them if needed
 	/*

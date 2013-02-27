@@ -12,46 +12,43 @@
 	<?php Yii::app()->bootstrap->register(); ?>
 </head>
 
-<body>
-
-<?php $this->widget('bootstrap.widgets.TbNavbar',array(
-    'items'=>array(
-        array(
-            'class'=>'bootstrap.widgets.TbMenu',
-            'items'=>array(
-                array('label'=>'Home', 'url'=>array('/site/index')),
-                array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
-                array('label'=>'Contact', 'url'=>array('/site/contact')),
-                array('label'=>'gwplotter', 'url'=>array('/plotter/index')),
-                array('label'=>'Models', 'url'=>array('/models/index')),
-                array('label'=>'Modeltypes', 'url'=>array('/modeltypes/index')),
-                array('label'=>'Parameters', 'url'=>array('/parameters/index')),
-                array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-                array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
-            ),
-        ),
-    ),
-)); ?>
-
-<div class="container" id="page">
-
-	<?php if(isset($this->breadcrumbs)):?>
-		<?php $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
-			'links'=>$this->breadcrumbs,
-		)); ?><!-- breadcrumbs -->
-	<?php endif?>
+<body><div class="container" id="page">
+  
+  <?php $this->widget('bootstrap.widgets.TbNavbar',array(
+      'type'=>'inverse',
+      'fluid'=>false,
+      // 'fixed'=>false,
+      'collapse'=>true,
+      'items'=>array(
+          array(
+              'class'=>'bootstrap.widgets.TbMenu',
+              'items'=>array(
+                  array('label'=>'Home', 'url'=>array('/site/index')),
+                  array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
+                  array('label'=>'Contact', 'url'=>array('/site/contact')),
+                  array('label'=>'gwplotter', 'url'=>array('/plotter/index')),
+                  array('label'=>'Models', 'url'=>array('/models/index')),
+                  array('label'=>'Modeltypes', 'url'=>array('/modeltypes/index')),
+                  array('label'=>'Parameters', 'url'=>array('/parameters/index')),
+                  array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
+                  array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
+              ),
+          ),
+      ),
+  )); ?>
 
 	<?php echo $content; ?>
 
 	<div class="clear"></div>
 
-	<div id="footer">
-		Copyright &copy; <?php echo date('Y'); ?> by us.<br/>
-		All Rights Reserved.<br/>
-		<?php // echo Yii::powered(); ?>
-	</div><!-- footer -->
-
+  <!-- <div id="footer">
+    Mail to: Vuk or Chengjian
+    Copyright &copy; <?php // echo date('Y'); ?> by us.<br/>
+    All Rights Reserved.<br/>
+    <?php // echo Yii::powered(); ?>
+  </div> --><!-- footer -->
+ 
 </div><!-- page -->
-
 </body>
+
 </html>

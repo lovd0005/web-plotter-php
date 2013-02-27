@@ -4,7 +4,10 @@ class PlotterController extends Controller
 {
 	public function actionIndex()
 	{
-		$this->render('index');
+		$dataProvider=new CActiveDataProvider('Models');
+    $modeltypes=Modeltypes::model()->findAll();
+    $plotConfig=new PlotConfig; 
+		$this->render('index', array('modeltypes'=>$modeltypes,'plotConfig'=>$plotConfig));
 	}
   
   public function actionPlot()

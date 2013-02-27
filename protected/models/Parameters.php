@@ -1,18 +1,21 @@
 <?php
 
 /**
- * This is the model class for table "tbl_modeltypes".
+ * This is the model class for table "tbl_parameters".
  *
- * The followings are the available columns in table 'tbl_modeltypes':
+ * The followings are the available columns in table 'tbl_parameters':
  * @property integer $id
  * @property string $name
+ * @property string $desc
+ * @property integer $model_id
+ * @property string $default
  */
-class Modeltypes extends CActiveRecord
+class Parameters extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return Modeltypes the static model class
+	 * @return Parameters the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -24,7 +27,7 @@ class Modeltypes extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'tbl_modeltypes';
+		return 'tbl_parameters';
 	}
 
 	/**
@@ -36,10 +39,12 @@ class Modeltypes extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('name', 'required'),
-			array('name', 'length', 'max'=>255),
+			array('model_id', 'numerical', 'integerOnly'=>true),
+			array('name, default', 'length', 'max'=>255),
+			array('desc', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name', 'safe', 'on'=>'search'),
+			array('id, name, desc, model_id, default', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -51,7 +56,6 @@ class Modeltypes extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-      'models'=>array(self::HAS_MANY,'Models','type_id')
 		);
 	}
 
@@ -63,6 +67,9 @@ class Modeltypes extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'name' => 'Name',
+			'desc' => 'Desc',
+			'model_id' => 'Model',
+			'default' => 'Default',
 		);
 	}
 
@@ -79,6 +86,9 @@ class Modeltypes extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
+		$criteria->compare('desc',$this->desc,true);
+		$criteria->compare('model_id',$this->model_id);
+		$criteria->compare('default',$this->default,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

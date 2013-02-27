@@ -11,6 +11,11 @@
  */
 class Models extends CActiveRecord
 {
+  public $color;
+  public $lineStyle;
+  public $lineWidth;
+  public $parameters;
+  
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -54,6 +59,9 @@ class Models extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+      'parameters'=>array(self::HAS_MANY, 'Parameters','model_id'),
+      'references'=>array(self::HAS_MANY, 'Reference', 'model_id'),
+      'type'=>array(self::BELONGS_TO, 'Modeltypes','type_id')
 		);
 	}
 

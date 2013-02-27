@@ -4,7 +4,7 @@ class m130224_105349_create_parameters_table extends CDbMigration
 {
 	public function up()
 	{
-    $this->createTable('tbl_paramters', array(
+    $this->createTable('tbl_parameters', array(
       'id' => 'pk',      
       'name' => 'string NOT NULL',
       'desc' => 'text',
@@ -15,7 +15,7 @@ class m130224_105349_create_parameters_table extends CDbMigration
 
 	public function down()
 	{
-    $this->dropTable('tbl_paramters');
+    $this->dropTable('tbl_parameters');
 		echo " drop table parameters.\n";
 		return true;
 	}

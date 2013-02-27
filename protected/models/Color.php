@@ -1,18 +1,19 @@
 <?php
 
 /**
- * This is the model class for table "tbl_modeltypes".
+ * This is the model class for table "tbl_color".
  *
- * The followings are the available columns in table 'tbl_modeltypes':
+ * The followings are the available columns in table 'tbl_color':
  * @property integer $id
  * @property string $name
+ * @property string $value
  */
-class Modeltypes extends CActiveRecord
+class Color extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return Modeltypes the static model class
+	 * @return Color the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -24,7 +25,7 @@ class Modeltypes extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'tbl_modeltypes';
+		return 'tbl_color';
 	}
 
 	/**
@@ -36,10 +37,10 @@ class Modeltypes extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('name', 'required'),
-			array('name', 'length', 'max'=>255),
+			array('name, value', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name', 'safe', 'on'=>'search'),
+			array('id, name, value', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -51,7 +52,6 @@ class Modeltypes extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-      'models'=>array(self::HAS_MANY,'Models','type_id')
 		);
 	}
 
@@ -63,6 +63,7 @@ class Modeltypes extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'name' => 'Name',
+			'value' => 'Value',
 		);
 	}
 
@@ -79,6 +80,7 @@ class Modeltypes extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
+		$criteria->compare('value',$this->value,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

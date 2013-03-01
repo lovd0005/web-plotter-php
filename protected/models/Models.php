@@ -13,7 +13,7 @@ class Models extends CActiveRecord
 {
   public $color;
   public $lineStyle;
-  public $lineWidth;
+  public $lineWidth=2;
   public $parameters;
   
 	/**

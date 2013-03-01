@@ -3,16 +3,35 @@
 class PlotterController extends Controller
 {
 	public function actionIndex()
-	{
-		$dataProvider=new CActiveDataProvider('Models');
+	{    
+    if(isset($_POST['Models']))
+    {
+      // $model->attributes=$_POST['Reference'];
+//           $uploadedFile=CUploadedFile::getInstance($model,'file');
+//           $model->file=$uploadedFile;
+//       if($model->save()){
+//             $uploadedFile->saveAs($model->saveFilePath());
+//         $this->redirect(array('view','id'=>$model->id));
+//       }
+  $this->redirect(array('view','array'=>array('model'=>$_POST['Models'],'plotter'=>$_POST['Plotter'])));
+
+    }
+		
+    $dataProvider=new CActiveDataProvider('Models');
     $modeltypes=Modeltypes::model()->findAll();
-    $plotConfig=new PlotConfig; 
-		$this->render('index', array('modeltypes'=>$modeltypes,'plotConfig'=>$plotConfig));
+    $plotter=new Plotter; 
+		$this->render('index', array('modeltypes'=>$modeltypes,'plotter'=>$plotter));
+     
 	}
   
   public function actionPlot()
   {
     $this->render('result');
+  }
+  
+  public function actionView(array $array)
+  {
+    $this->render('paras', $array);
   }
 
 	// Uncomment the following methods and override them if needed

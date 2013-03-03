@@ -34,10 +34,16 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'default value'); ?>
-		<?php echo $form->textField($model,'default',array('size'=>60,'maxlength'=>255)); ?>
-		<?php echo $form->error($model,'default'); ?>
+		<?php echo $form->labelEx($model,'default_value'); ?>
+		<?php echo $form->textField($model,'default_value',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->error($model,'default_value'); ?>
 	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'var_name'); ?>
+		<?php echo $form->textField($model,'var_name',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->error($model,'var_name'); ?>
+  </div>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>

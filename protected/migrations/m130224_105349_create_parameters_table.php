@@ -8,8 +8,9 @@ class m130224_105349_create_parameters_table extends CDbMigration
       'id' => 'pk',      
       'name' => 'string NOT NULL',
       'desc' => 'text',
-      'model_id' => 'integer',
-      'default' => 'string',
+      'model_id' => 'integer not null',
+      'default_value' => 'string',
+      'var_name' => 'string not null UNIQUE'
     ));
 	}
 

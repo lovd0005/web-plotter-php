@@ -47,7 +47,7 @@ return array(
     'bootstrap'=>array(
       'class'=>'bootstrap.components.Bootstrap',
     ),
-    
+
 		'user'=>array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,

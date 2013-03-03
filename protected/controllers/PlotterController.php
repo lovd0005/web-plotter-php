@@ -4,34 +4,24 @@ class PlotterController extends Controller
 {
 	public function actionIndex()
 	{    
-    if(isset($_POST['Models']))
+    $plotter=new Plotter; 
+    if(isset($_POST['Models']) && isset($_POST['Plotter']) )
     {
-      // $model->attributes=$_POST['Reference'];
-//           $uploadedFile=CUploadedFile::getInstance($model,'file');
-//           $model->file=$uploadedFile;
-//       if($model->save()){
-//             $uploadedFile->saveAs($model->saveFilePath());
-//         $this->redirect(array('view','id'=>$model->id));
-//       }
-  $this->redirect(array('view','array'=>array('model'=>$_POST['Models'],'plotter'=>$_POST['Plotter'])));
+      $plotter->attributes=$_POST['Plotter'];
+      $this->redirect(array('plot','plotConfig'=>$_POST['Plotter'] ));
 
     }
-		
-    $dataProvider=new CActiveDataProvider('Models');
     $modeltypes=Modeltypes::model()->findAll();
-    $plotter=new Plotter; 
 		$this->render('index', array('modeltypes'=>$modeltypes,'plotter'=>$plotter));
      
 	}
   
-  public function actionPlot()
+  public function actionPlot(array $plotConfig)
   {
-    $this->render('result');
-  }
-  
-  public function actionView(array $array)
-  {
-    $this->render('paras', $array);
+    $plotter=new Plotter; 
+    $plotter->attributes=$plotConfig;
+    $plotter->loadModelsConfig();
+    $this->render('paras', array('plotter'=>$plotter, 'plotconfig'=>$plotConfig));
   }
 
 	// Uncomment the following methods and override them if needed

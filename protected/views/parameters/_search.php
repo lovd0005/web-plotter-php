@@ -32,8 +32,13 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'default'); ?>
-		<?php echo $form->textField($model,'default',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->label($model,'default_value'); ?>
+		<?php echo $form->textField($model,'default_value',array('size'=>60,'maxlength'=>255)); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'var_name'); ?>
+		<?php echo $form->textField($model,'var_name',array('size'=>60,'maxlength'=>255)); ?>
 	</div>
 
 	<div class="row buttons">

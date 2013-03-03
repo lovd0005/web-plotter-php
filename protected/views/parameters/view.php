@@ -25,6 +25,7 @@ $this->menu=array(
 		'name',
 		'desc',
 		'model_id',
-		'default',
+		'default_value',
+		'var_name',
 	),
 )); ?>

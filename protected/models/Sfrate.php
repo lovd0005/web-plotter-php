@@ -1,22 +1,19 @@
 <?php
 
 /**
- * This is the model class for table "tbl_parameters".
+ * This is the model class for table "tbl_sfrate".
  *
- * The followings are the available columns in table 'tbl_parameters':
+ * The followings are the available columns in table 'tbl_sfrate':
  * @property integer $id
  * @property string $name
- * @property string $desc
- * @property integer $model_id
- * @property string $default_value
- * @property string $var_name
+ * @property string $sf_para
  */
-class Parameters extends CActiveRecord
+class Sfrate extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return Parameters the static model class
+	 * @return Sfrate the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -28,7 +25,7 @@ class Parameters extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'tbl_parameters';
+		return 'tbl_sfrate';
 	}
 
 	/**
@@ -39,14 +36,11 @@ class Parameters extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, model_id, var_name', 'required'),
-			array('model_id', 'numerical', 'integerOnly'=>true),
-			array('name, default_value, var_name', 'length', 'max'=>255),
-			array('desc', 'safe'),
-      array('var_name', 'unique'),
+			array('name, sf_para', 'required'),
+			array('name, sf_para', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, desc, model_id, default_value, var_name', 'safe', 'on'=>'search'),
+			array('id, name, sf_para', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -69,10 +63,7 @@ class Parameters extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'name' => 'Name',
-			'desc' => 'Desc',
-			'model_id' => 'Model',
-			'default_value' => 'Default Value',
-			'var_name' => 'Var Name',
+			'sf_para' => 'Sf Para',
 		);
 	}
 
@@ -89,10 +80,7 @@ class Parameters extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
-		$criteria->compare('desc',$this->desc,true);
-		$criteria->compare('model_id',$this->model_id);
-		$criteria->compare('default_value',$this->default_value,true);
-		$criteria->compare('var_name',$this->var_name,true);
+		$criteria->compare('sf_para',$this->sf_para,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

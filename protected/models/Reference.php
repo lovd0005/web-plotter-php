@@ -54,6 +54,7 @@ class Reference extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+      'model'=>array(self::BELONGS_TO, 'Models','model_id')
 		);
 	}
 

@@ -1,15 +1,15 @@
 <?php
-/* @var $this ParametersController */
-/* @var $model Parameters */
+/* @var $this SfrateController */
+/* @var $model Sfrate */
 
 $this->breadcrumbs=array(
-	'Parameters'=>array('index'),
+	'Sfrates'=>array('index'),
 	'Manage',
 );
 
 $this->menu=array(
-	array('label'=>'List Parameters', 'url'=>array('index')),
-	array('label'=>'Create Parameters', 'url'=>array('create')),
+	array('label'=>'List Sfrate', 'url'=>array('index')),
+	array('label'=>'Create Sfrate', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -18,7 +18,7 @@ $('.search-button').click(function(){
 	return false;
 });
 $('.search-form form').submit(function(){
-	$('#parameters-grid').yiiGridView('update', {
+	$('#sfrate-grid').yiiGridView('update', {
 		data: $(this).serialize()
 	});
 	return false;
@@ -26,7 +26,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Manage Parameters</h1>
+<h1>Manage Sfrates</h1>
 
 <p>
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
@@ -41,16 +41,13 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 </div><!-- search-form -->
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'parameters-grid',
+	'id'=>'sfrate-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
 		'name',
-		'desc',
-		'model_id',
-		'default_value',
-		'var_name',
+		'sf_para',
 		array(
 			'class'=>'CButtonColumn',
 		),

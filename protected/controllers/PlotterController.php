@@ -7,8 +7,12 @@ class PlotterController extends Controller
     $plotter=new Plotter; 
     if(isset($_POST['Models']) && isset($_POST['Plotter']) )
     {
+    	$_POST['Plotter']['models'] = $_POST['Models'];
       $plotter->attributes=$_POST['Plotter'];
-      $this->redirect(array('plot','plotConfig'=>$_POST['Plotter'] ));
+			if ($plotter->validate())
+      {
+      	$this->redirect(array('plot','plotConfig'=>$_POST['Plotter'] ));
+      }
 
     }
     $modeltypes=Modeltypes::model()->findAll();

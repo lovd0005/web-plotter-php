@@ -1,6 +1,6 @@
 processid = getmypid();
 
-xmin = ;
+xmin = 1;
 
 xmax = 1000;
 
@@ -10,7 +10,7 @@ ymax = 1.0E-16;
 
 numpoints = 500;
 
-sfrate = 'h';
+1E+15sfrate = 'h';
 
 manually = 0;
 

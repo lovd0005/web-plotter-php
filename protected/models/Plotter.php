@@ -30,7 +30,9 @@ class Plotter extends CFormModel
       // array('username, password', 'required'),
       // // rememberMe needs to be a boolean
       // array('rememberMe', 'boolean'),
+      array('models','required'),
       array('xmin, xmax, ymin, ymax, numpoints','required'),
+      array('xmin, xmax, ymin, ymax, numpoints','numerical'),
       array('manually, removeSiteInfo, removeBuilderInfo','boolean'),
       // // password needs to be authenticated
       // array('password', 'authenticate'),
@@ -75,7 +77,13 @@ class Plotter extends CFormModel
     //key % value as names and vaules of var
     foreach ($this->attributes as $key => $value) 
     {
-      if (!is_array($value)) fwrite($fh, $key." = ".$value.";\n\n");   
+      if (!is_array($value)) 
+      {
+        fwrite($fh, $key." = ".$value.";\n\n");   
+      } elseif ($key == 'models')
+      {
+        fwrite($fh, $value[0]['params'][0]['value']);
+      }
     }
 
     foreach ($models as $model)

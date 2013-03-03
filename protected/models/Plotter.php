@@ -82,7 +82,8 @@ class Plotter extends CFormModel
         fwrite($fh, $key." = ".$value.";\n\n");   
       } elseif ($key == 'models')
       {
-        fwrite($fh, $value[0]['params'][0]['value']);
+        foreach ($value as $model)
+        fwrite($fh, $model['params'][0]['value']);
       }
     }
 

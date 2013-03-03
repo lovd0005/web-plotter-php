@@ -10,7 +10,7 @@ ymax = 1.0E-16;
 
 numpoints = 500;
 
-1E+15sfrate = 'h';
+1E+151.220.01sfrate = 'h';
 
 manually = 0;
 

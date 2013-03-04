@@ -72,7 +72,6 @@ class Plotter extends CFormModel
     //foreach ($_POST as $key => $value) //key % value as names and vaules of var
     //	{fwrite($fh,"  global ".$key.", ".$key." = ".$value.";\n\n"); }
 
-    fwrite($fh, "processid = getmypid();\n\n");
 
     //key % value as names and vaules of var
     foreach ($this->attributes as $key => $value) 
@@ -82,17 +81,18 @@ class Plotter extends CFormModel
         fwrite($fh, $key." = ".$value.";\n\n");   
       } elseif ($key == 'models')
       {
-        foreach ($value as $model)
-        fwrite($fh, $model['params'][0]['value']);
+        fwrite($fh, "namelist = cell(".sizeof($value).",1)\n\n");
+        fwrite($fh, 'mod_number = '.sizeof($value).";\n\n");
+        foreach ($value as $key=>$mod)
+        {
+          $model=Models::model()->findByPk($mod['id']);
+          fwrite($fh, 'namelist('.$key.') = '.$model->name."\n\n");
+          fwrite($fh, $model['id']."\n");
+          fwrite($fh, $mod['params'][0]['value']."\n");
+        }
       }
     }
 
-    foreach ($models as $model)
-    {
-      
-    }
-    
-    // 
     // $text = null; 
     // for ($i = 0 ; $i < sizeof($selection);$i++)
     // {

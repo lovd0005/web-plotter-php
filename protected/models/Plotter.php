@@ -81,10 +81,14 @@ class Plotter extends CFormModel
         fwrite($fh, $key." = ".$value.";\n\n");   
       } elseif ($key == 'models')
       {
+        fwrite($fh, "namelist = cell(".sizeof($value).",1)\n\n");
         fwrite($fh, 'mod_number = '.sizeof($value).";\n\n");
-        foreach ($value as $model)
+        foreach ($value as $key=>$mod)
         {
-          fwrite($fh, $model['params'][0]['value']."\n");
+          $model=Models::model()->findByPk($mod['id']);
+          fwrite($fh, 'namelist('.$key.') = '.$model->name."\n\n");
+          fwrite($fh, $model['id']."\n");
+          fwrite($fh, $mod['params'][0]['value']."\n");
         }
       }
     }

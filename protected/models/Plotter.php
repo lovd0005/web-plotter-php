@@ -109,7 +109,7 @@ class Plotter extends CFormModel
 
   public function plot()
   {
-    return exec("matlab -nodesktop -r entry_project   1>logfiles/matlab_output.log 2>&1 ");
+    return exec("/usr/local/bin/matlab -nodesktop -r entry_project   1>logfiles/matlab_output.log 2>&1 ");
   }
 
 }

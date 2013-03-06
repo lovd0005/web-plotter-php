@@ -109,7 +109,8 @@ class Plotter extends CFormModel
 
   public function plot()
   {
-    return exec("/usr/local/bin/matlab -nodesktop -r entry_project   1>logfiles/matlab_output.log 2>&1 ");
+    $setEnv='export PATH=/local/site/pkg/matlabR2012a_x64/bin/:/usr/local/bin:$PATH;';
+    return exec($setEnv."matlab -nodesktop -r entry_project   1>logfiles/matlab_output.log 2>&1 ");
   }
 
 }

@@ -92,13 +92,15 @@ class Plotter extends CFormModel
           $content = $content.'colorlist{'."$key+1".'} = '."'".$mod['color']."';\n\n";
           $content = $content.'widthlist{'."$key+1".'} = '.$mod['lineWidth'].";\n\n";
           $content = $content.'stylelist{'."$key+1".'} = '."'".$mod['lineStyle']."';\n\n";
-
-          $content = $content.'parameters{'."$key+1".'} = cell(1,'.sizeof($mod['params']).");\n";  
-          foreach ($mod['params'] as $para)
+          if (isset($mod['params'])) 
           {
-            $content = $content.'parameters{'."$key+1, ".$para['position'].'} = '.$para['value']."; \n";
+            $content = $content.'parameters{'."$key+1".'} = cell(1,'.sizeof($mod['params']).");\n";  
+            foreach ($mod['params'] as $para)
+            {
+              $content = $content.'parameters{'."$key+1, ".$para['position'].'} = '.$para['value']."; \n";
+            }
+            $content = $content."\n";
           }
-          $content = $content."\n";
         }
       }
     }

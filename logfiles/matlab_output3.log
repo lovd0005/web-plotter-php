@@ -1,0 +1,62 @@
+/local/site/pkg/matlab/bin/matlab: line 399: expr: command not found
+/local/site/pkg/matlab/bin/matlab: line 422: expr: command not found
+/local/site/pkg/matlab/bin/matlab: line 422: [: -ne: unary operator expected
+/local/site/pkg/matlab/bin/matlab: line 234: expr: command not found
+/local/site/pkg/matlab/bin/matlab: line 234: expr: command not found
+/local/site/pkg/matlab2008a/bin/util/oscheck.sh: line 133: expr: command not found
+/local/site/pkg/matlab2008a/bin/util/oscheck.sh: line 144: [: -eq: unary operator expected
+/local/site/pkg/matlab2008a/bin/util/oscheck.sh: line 185: head: command not found
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2008 The MathWorks, Inc.
+                         Version 7.6.0.324 (R2008a)
+                             February 10, 2008
+
+ 
+  To get started, type one of these: helpwin, helpdesk, or demo.
+  For product information, visit www.mathworks.com.
+ 
+>> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> Machine: cocoa.spa.umn.edu
+>> >> >> >> >> Hard coded lutsen as machine>> >> >> >> >> >> >> >> entryform_process.m: Process ID 28590>> >> >> >> >> >> >> run_model_subroutines: Found 1 data sets in input****** TIME =   0.3Look for file: *************************************************
+Beginning DNS Calculation
+Finished DNS Calculation
+*************************************************
+>> >> 
+
+
+****** TIME =   2.5
+>> >> entryform_process.m: CALL PLOT DATA>> >> >> >> >> >> >> >> >> >> >> >> 
+
+
+plot_limit_data: Started
+plot_limit_data: p structure incomplete
+
+p = 
+
+     file: 4
+    color: 'b'
+    style: 'line'
+    label: 'DNS'
+
+>> >> >> 
+
+
+****** TIME =   2.9
+>> 
+entryform_process.m: PROCESSING GRAPHICS  /home/user1/cwu/public_html/output/graph_28590>> >> >> >> >> >> 
+****** TIME =   2.9
+>> >> >> >> >> >> entryform_process.m: CREATE html file /home/user1/cwu/public_html/output/results_28590.php>> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> 
+ans =
+
+        3003
+
+>> >> >> >> >> >> 
+****** TIME =   2.9
+>> >> >> entryform_process.m: Delete earlier graphics files
+****** TIME =   2.9
+>> >> >> >> >> >> >> entryform_process.m: Look for flag files associated with gifs
+/home/user1/cwu/public_html/output/graph_28590.gif
+/home/user1/cwu/public_html/output/graph_28590_legend.gif>> >> >> >> >> >> made it>> 
+entryform_process.m: Waited   15 extra secs for convert to finish>> >> >> >> >> >> >> 
+****** TIME =  18.0
+>> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> 

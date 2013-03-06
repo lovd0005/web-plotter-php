@@ -1,0 +1,9 @@
+function [ output_args ] = binary_coal_rate( input_args )
+%BINARY_COAL_RATE Summary of this function goes here
+%   Detailed explanation goes here
+
+
+
+
+end
+

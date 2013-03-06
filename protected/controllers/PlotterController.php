@@ -14,6 +14,7 @@ class PlotterController extends Controller
         // $this->redirect(array('plot','plotConfig'=>$_POST['Plotter'] ));
         $plotter->attributes=$_POST['Plotter'];
         $plotter->loadModelConfig();
+        echo $plotter->plot();
         $this->render('paras', array('plotter'=>$plotter, 'plotconfig'=>$_POST['Plotter']));
       }
 

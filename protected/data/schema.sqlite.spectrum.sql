@@ -10,7 +10,7 @@ INSERT INTO tbl_modeltype (name) VALUES ('Cosmological Models');
 INSERT INTO tbl_modeltype (name) VALUES ('Experimental Limits');
 INSERT INTO tbl_modeltype (name) VALUES ('Projected sensitivities');
 
-INSERT INTO tbl_spectrum (name, type_id, para_num) VALUES ('Magnetar Model', 1, 5);
+INSERT INTO tbl_spectrum (name, func_name, type_id, para_num) VALUES ('Magnetar Model', 'Mag_Model', 1, 5);
 INSERT INTO tbl_parameter (name, detail, spectrum_id, value, position) VALUES ('B-Field', '[7e13G, 1e17G]:', 1, '1E+15',1);
 INSERT INTO tbl_parameter (name, detail, spectrum_id, value, position) VALUES ('ε', '(ellipticity) [1e-6 - 1e-2]:', 1, '0.0002',2);
 INSERT INTO tbl_parameter (name, detail, spectrum_id, value, position) VALUES ('P0', '(rot period) [1e-3s,5e-3s]:', 1, '0.001',3);
@@ -94,3 +94,17 @@ INSERT INTO tbl_sfrate (name, sf_para) VALUES ('Fardal 2007', "'f'");
 INSERT INTO tbl_sfrate (name, sf_para) VALUES ('Wilken 2008', "'w'");
 INSERT INTO tbl_sfrate (name, sf_para) VALUES ('Nagamine et al. 2006 (fossil model)', "'n'");
 INSERT INTO tbl_sfrate (name, sf_para) VALUES ('Springel & Hernquist 2003', "'s'");
+
+INSERT INTO tbl_color (name, value)  VALUES ('green', 'g');
+INSERT INTO tbl_color (name, value)  VALUES ('white', 'w');
+INSERT INTO tbl_color (name, value)  VALUES ('black', 'k');
+INSERT INTO tbl_color (name, value)  VALUES ('red', 'r');
+INSERT INTO tbl_color (name, value)  VALUES ('cyan', 'c');
+INSERT INTO tbl_color (name, value)  VALUES ('magenta', 'm');
+INSERT INTO tbl_color (name, value)  VALUES ('yellow', 'y');
+INSERT INTO tbl_color (name, value)  VALUES ('Blue', 'b');
+
+INSERT INTO tbl_linestyle (name, value)  VALUES ('Solid', '-');
+INSERT INTO tbl_linestyle (name, value)  VALUES ('Dashed', '--');
+INSERT INTO tbl_linestyle (name, value)  VALUES ('Dotted', ':');
+INSERT INTO tbl_linestyle (name, value)  VALUES ('Dash-dot', '-.');

@@ -66,14 +66,8 @@ class Plotter extends CFormModel
     $this->spectrums = $models;
     
     $fh = fopen('matlab/para_input.m', 'w') or die("can't open file");
-    $content = '';
-    //fwrite($fh, "function record = para_input()\n\n");
-    //fwrite($fh,"  global processid, processid = $ID;\n\n");
-    //foreach ($_POST as $key => $value) //key % value as names and vaules of var
-    //	{fwrite($fh,"  global ".$key.", ".$key." = ".$value.";\n\n"); }
+    $content = ''; 
 
-
-    //key % value as names and vaules of var
     foreach ($this->attributes as $key => $value) 
     {
       if (!is_array($value)) 
@@ -81,17 +75,24 @@ class Plotter extends CFormModel
         $content = $content.$key." = ".$value.";\n\n";   
       } elseif ($key == 'spectrums')
       {
-        $content = $content.'mod_number = '.sizeof($value).";\n\n";
-        $content = $content."namelist = cell(".sizeof($value).",1)\n\n";
-        $content = $content."funclist = cell(".sizeof($value).",1)\n\n";
-        $content = $content.'parameters = cell('.sizeof($value).", 1); \n\n";
+        $size =sizeof($value);
+        $content = $content.'mod_number = '.$size.";\n\n";
+        $content = $content."namelist = cell(".$size.",1);\n\n";
+        $content = $content."funclist = cell(".$size.",1);\n\n";
+        $content = $content."colorlist = cell(".$size.",1);\n\n";
+        $content = $content."widthlist = cell(".$size.",1);\n\n";
+        $content = $content."stylelist = cell(".$size.",1);\n\n";
+        $content = $content.'parameters = cell('.$size.", 1);\n\n";
 
         foreach ($value as $key=>$mod)
         {
           $model=Spectrum::model()->findByPk($mod['id']);
           $content = $content.'namelist{'."$key+1".'} = '."'".$model->name."';\n\n";
           $content = $content.'funclist{'."$key+1".'} = '."'".$model->func_name."';\n\n";
-          
+          $content = $content.'colorlist{'."$key+1".'} = '."'".$mod['color']."';\n\n";
+          $content = $content.'widthlist{'."$key+1".'} = '.$mod['lineWidth'].";\n\n";
+          $content = $content.'stylelist{'."$key+1".'} = '."'".$mod['lineStyle']."';\n\n";
+
           $content = $content.'parameters{'."$key+1".'} = cell(1,'.sizeof($mod['params']).");\n";  
           foreach ($mod['params'] as $para)
           {
@@ -101,24 +102,14 @@ class Plotter extends CFormModel
         }
       }
     }
-    fwrite($fh,$content);
 
-    // $text = null; 
-    // for ($i = 0 ; $i < sizeof($selection);$i++)
-    // {
-    //   for($n = 0; $n < sizeof($selection[$i][1]);$n++)
-    //   {
-    //     $text = $text."[ ".$selection[$i][0]. ", ".$selection[$i][1][$n]."]; ";
-    //     // [ 1, 2] means coms_2 , [0,1] means astro_1 
-    //     }
-    //   }
-    // $text = "[ ".$text."]";
-    // fwrite($fh,"selection = ".$text.";\n\n");
-    // //fwrite($fh,"  global selection, selection = ".$text.";\n\n");
-    // 
-    // //fwrite($fh,"end");
+    fwrite($fh,$content);
     fclose($fh);
-    
+  }
+
+  public function plot()
+  {
+    return exec("matlab -nodesktop -r entry_project   1>logfiles/matlab_output.log 2>&1 ");
   }
 
 }

@@ -1,6 +1,6 @@
 <?php
-/* @var $this ReferenceController */
-/* @var $model Reference */
+/* @var $this ModeltypeController */
+/* @var $model Modeltype */
 /* @var $form CActiveForm */
 ?>
 
@@ -17,18 +17,8 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'spectrum_id'); ?>
-		<?php echo $form->textField($model,'spectrum_id'); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->label($model,'name'); ?>
 		<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>255)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'file'); ?>
-		<?php echo $form->textField($model,'file',array('size'=>60,'maxlength'=>255)); ?>
 	</div>
 
 	<div class="row buttons">

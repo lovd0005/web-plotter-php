@@ -121,7 +121,7 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
     $i=0;
     foreach ($modeltypes as $modeltype) {
     echo '<tr><th colspan="4" class="text-center">'.$modeltype->name.'</th></tr>';
-    foreach ($modeltype->models as $model) {
+    foreach ($modeltype->spectrums as $model) {
       echo $this->renderPartial('_form', array('model'=>$model, 'i'=>$i));
       $i++;
     };

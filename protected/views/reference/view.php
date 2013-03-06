@@ -22,7 +22,7 @@ $this->menu=array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',
-		'model_id',
+		'spectrum_id',
 		'name',
 		'file',
 	),

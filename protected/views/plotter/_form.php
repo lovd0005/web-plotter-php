@@ -13,9 +13,9 @@
   <td class="">
     <?php 
       foreach ($model->parameters as $k=>$parameter){
-      	echo CHtml::encode($parameter->name).CHtml::encode($parameter->desc); 
-        echo CHtml::activehiddenField($parameter,"id",array('class'=>'span1','name'=>"Models[$i][params][$k][id]"));
-        echo CHtml::activeTextField($parameter,"[$i][$k]default_value",array('class'=>'span1','name'=>"Models[$i][params][$k][value]")).'<br>';
+      	echo CHtml::encode($parameter->name).CHtml::encode($parameter->detail); 
+        echo CHtml::activehiddenField($parameter,"position",array('class'=>'span1','name'=>"Spectrum[$i][params][$k][position]"));
+        echo CHtml::activeTextField($parameter,"[$i][$k]value",array('class'=>'span1','name'=>"Spectrum[$i][params][$k][value]")).'<br>';
         
       } ?>
   </td>

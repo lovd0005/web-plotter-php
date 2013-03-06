@@ -8,15 +8,34 @@ ymax = 1.0E-16;
 
 numpoints = 500;
 
-<<<<<<< HEAD
-1E+151.220.01sfrate = 'h';
-=======
 mod_number = 2;
 
-1E+15
-1.22
+namelist = cell(2,1)
+
+funclist = cell(2,1)
+
+parameters = cell(2, 1); 
+
+namelist{0+1} = 'Magnetar Model';
+
+funclist{0+1} = '';
+
+parameters{0+1} = cell(1,5);
+parameters{0+1, 1} = 1E+15; 
+parameters{0+1, 2} = 0.0002; 
+parameters{0+1, 3} = 0.001; 
+parameters{0+1, 4} = 0.001; 
+parameters{0+1, 5} = 1E+45; 
+
+namelist{1+1} = 'Double Neutron Star Model';
+
+funclist{1+1} = '';
+
+parameters{1+1} = cell(1,2);
+parameters{1+1, 1} = 1.22; 
+parameters{1+1, 2} = 3E-0; 
+
 sfrate = 'h';
->>>>>>> 061db21ff8dda4ab289bd4f2e83f0deec33c1a65
 
 manually = 0;
 

@@ -1,20 +1,26 @@
 <?php
 
 /**
- * This is the model class for table "tbl_reference".
+ * This is the model class for table "tbl_spectrum".
  *
- * The followings are the available columns in table 'tbl_reference':
+ * The followings are the available columns in table 'tbl_spectrum':
  * @property integer $id
- * @property integer $spectrum_id
  * @property string $name
- * @property string $file
+ * @property integer $type_id
+ * @property string $func_name
+ * @property integer $para_num
  */
-class Reference extends CActiveRecord
+class Spectrum extends CActiveRecord
 {
+  public $color;
+  public $lineStyle;
+  public $lineWidth=2;
+  public $toPlot=false;
+  public $params;
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return Reference the static model class
+	 * @return Spectrum the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -26,7 +32,7 @@ class Reference extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'tbl_reference';
+		return 'tbl_spectrum';
 	}
 
 	/**
@@ -37,12 +43,12 @@ class Reference extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name', 'required'),
-			array('spectrum_id', 'numerical', 'integerOnly'=>true),
-			array('name, file', 'length', 'max'=>255),
+			array('name, para_num', 'required'),
+			array('type_id, para_num', 'numerical', 'integerOnly'=>true),
+			array('name, func_name', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, spectrum_id, name, file', 'safe', 'on'=>'search'),
+			array('id, name, type_id, func_name, para_num', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -54,6 +60,9 @@ class Reference extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+      'parameters'=>array(self::HAS_MANY, 'Parameter','spectrum_id'),
+      'references'=>array(self::HAS_MANY, 'Reference', 'spectrum_id'),
+      'modeltype'=>array(self::BELONGS_TO, 'Modeltype','type_id')
 		);
 	}
 
@@ -64,9 +73,10 @@ class Reference extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'spectrum_id' => 'Spectrum',
 			'name' => 'Name',
-			'file' => 'File',
+			'type_id' => 'Type',
+			'func_name' => 'Func Name',
+			'para_num' => 'Para Num',
 		);
 	}
 
@@ -82,9 +92,10 @@ class Reference extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('spectrum_id',$this->spectrum_id);
 		$criteria->compare('name',$this->name,true);
-		$criteria->compare('file',$this->file,true);
+		$criteria->compare('type_id',$this->type_id);
+		$criteria->compare('func_name',$this->func_name,true);
+		$criteria->compare('para_num',$this->para_num);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

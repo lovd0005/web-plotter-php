@@ -1,15 +1,15 @@
 <?php
-/* @var $this ReferenceController */
-/* @var $model Reference */
+/* @var $this ModeltypeController */
+/* @var $model Modeltype */
 
 $this->breadcrumbs=array(
-	'References'=>array('index'),
+	'Modeltypes'=>array('index'),
 	'Manage',
 );
 
 $this->menu=array(
-	array('label'=>'List Reference', 'url'=>array('index')),
-	array('label'=>'Create Reference', 'url'=>array('create')),
+	array('label'=>'List Modeltype', 'url'=>array('index')),
+	array('label'=>'Create Modeltype', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -18,7 +18,7 @@ $('.search-button').click(function(){
 	return false;
 });
 $('.search-form form').submit(function(){
-	$('#reference-grid').yiiGridView('update', {
+	$('#modeltype-grid').yiiGridView('update', {
 		data: $(this).serialize()
 	});
 	return false;
@@ -26,7 +26,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Manage References</h1>
+<h1>Manage Modeltypes</h1>
 
 <p>
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
@@ -41,14 +41,12 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 </div><!-- search-form -->
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'reference-grid',
+	'id'=>'modeltype-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
-		'spectrum_id',
 		'name',
-		'file',
 		array(
 			'class'=>'CButtonColumn',
 		),

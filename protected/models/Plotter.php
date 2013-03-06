@@ -12,7 +12,7 @@ class Plotter extends CFormModel
   public $ymin=1e-18;
   public $ymax=1e-16;
   public $numpoints=500;
-  public $models;
+  public $spectrums;
   public $sfrate;
   public $manually;
   public $removeSiteInfo;
@@ -30,7 +30,7 @@ class Plotter extends CFormModel
       // array('username, password', 'required'),
       // // rememberMe needs to be a boolean
       // array('rememberMe', 'boolean'),
-      array('models','required'),
+      array('spectrums','required'),
       array('xmin, xmax, ymin, ymax, numpoints','required'),
       array('xmin, xmax, ymin, ymax, numpoints','numerical'),
       array('manually, removeSiteInfo, removeBuilderInfo','boolean'),
@@ -60,13 +60,13 @@ class Plotter extends CFormModel
     return false;
   }
   
-  public function loadModelsConfig()
+  public function loadModelConfig()
   {
-    $models = array_filter($this->models, array($this, 'toPlot'));
-    $this->models = $models;
+    $models = array_filter($this->spectrums, array($this, 'toPlot'));
+    $this->spectrums = $models;
     
     $fh = fopen('matlab/para_input.m', 'w') or die("can't open file");
-
+    $content = '';
     //fwrite($fh, "function record = para_input()\n\n");
     //fwrite($fh,"  global processid, processid = $ID;\n\n");
     //foreach ($_POST as $key => $value) //key % value as names and vaules of var
@@ -78,20 +78,30 @@ class Plotter extends CFormModel
     {
       if (!is_array($value)) 
       {
-        fwrite($fh, $key." = ".$value.";\n\n");   
-      } elseif ($key == 'models')
+        $content = $content.$key." = ".$value.";\n\n";   
+      } elseif ($key == 'spectrums')
       {
-        fwrite($fh, "namelist = cell(".sizeof($value).",1)\n\n");
-        fwrite($fh, 'mod_number = '.sizeof($value).";\n\n");
+        $content = $content.'mod_number = '.sizeof($value).";\n\n";
+        $content = $content."namelist = cell(".sizeof($value).",1)\n\n";
+        $content = $content."funclist = cell(".sizeof($value).",1)\n\n";
+        $content = $content.'parameters = cell('.sizeof($value).", 1); \n\n";
+
         foreach ($value as $key=>$mod)
         {
-          $model=Models::model()->findByPk($mod['id']);
-          fwrite($fh, 'namelist('.$key.') = '.$model->name."\n\n");
-          fwrite($fh, $model['id']."\n");
-          fwrite($fh, $mod['params'][0]['value']."\n");
+          $model=Spectrum::model()->findByPk($mod['id']);
+          $content = $content.'namelist{'."$key+1".'} = '."'".$model->name."';\n\n";
+          $content = $content.'funclist{'."$key+1".'} = '."'".$model->func_name."';\n\n";
+          
+          $content = $content.'parameters{'."$key+1".'} = cell(1,'.sizeof($mod['params']).");\n";  
+          foreach ($mod['params'] as $para)
+          {
+            $content = $content.'parameters{'."$key+1, ".$para['position'].'} = '.$para['value']."; \n";
+          }
+          $content = $content."\n";
         }
       }
     }
+    fwrite($fh,$content);
 
     // $text = null; 
     // for ($i = 0 ; $i < sizeof($selection);$i++)

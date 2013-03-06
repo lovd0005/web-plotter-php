@@ -3,5 +3,5 @@
 
 print_r($plotter->attributes);
 echo '<br />';
-// print_r($plotconfig);
+echo getcwd();
 ?>

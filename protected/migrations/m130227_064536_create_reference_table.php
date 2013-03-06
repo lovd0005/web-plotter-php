@@ -6,7 +6,7 @@ class m130227_064536_create_reference_table extends CDbMigration
 	{
     $this->createTable('tbl_reference', array(
       'id' => 'pk',
-      'model_id' => 'integer',
+      'spectrum_id' => 'integer',
       'name' => 'string NOT NULL',
       'file' => 'string',
     ));

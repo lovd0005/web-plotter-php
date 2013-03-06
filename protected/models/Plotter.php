@@ -12,7 +12,7 @@ class Plotter extends CFormModel
   public $ymin=1e-18;
   public $ymax=1e-16;
   public $numpoints=500;
-  public $models;
+  public $spectrums;
   public $sfrate;
   public $manually;
   public $removeSiteInfo;
@@ -30,7 +30,7 @@ class Plotter extends CFormModel
       // array('username, password', 'required'),
       // // rememberMe needs to be a boolean
       // array('rememberMe', 'boolean'),
-      array('models','required'),
+      array('spectrums','required'),
       array('xmin, xmax, ymin, ymax, numpoints','required'),
       array('xmin, xmax, ymin, ymax, numpoints','numerical'),
       array('manually, removeSiteInfo, removeBuilderInfo','boolean'),
@@ -60,51 +60,56 @@ class Plotter extends CFormModel
     return false;
   }
   
-  public function loadModelsConfig()
+  public function loadModelConfig()
   {
-    $models = array_filter($this->models, array($this, 'toPlot'));
-    $this->models = $models;
+    $models = array_filter($this->spectrums, array($this, 'toPlot'));
+    $this->spectrums = $models;
     
     $fh = fopen('matlab/para_input.m', 'w') or die("can't open file");
+    $content = ''; 
 
-    //fwrite($fh, "function record = para_input()\n\n");
-    //fwrite($fh,"  global processid, processid = $ID;\n\n");
-    //foreach ($_POST as $key => $value) //key % value as names and vaules of var
-    //	{fwrite($fh,"  global ".$key.", ".$key." = ".$value.";\n\n"); }
-
-
-    //key % value as names and vaules of var
     foreach ($this->attributes as $key => $value) 
     {
       if (!is_array($value)) 
       {
-        fwrite($fh, $key." = ".$value.";\n\n");   
-      } elseif ($key == 'models')
+        $content = $content.$key." = ".$value.";\n\n";   
+      } elseif ($key == 'spectrums')
       {
-        fwrite($fh, 'mod_number = '.sizeof($value).";\n\n");
-        foreach ($value as $model)
+        $size =sizeof($value);
+        $content = $content.'mod_number = '.$size.";\n\n";
+        $content = $content."namelist = cell(".$size.",1);\n\n";
+        $content = $content."funclist = cell(".$size.",1);\n\n";
+        $content = $content."colorlist = cell(".$size.",1);\n\n";
+        $content = $content."widthlist = cell(".$size.",1);\n\n";
+        $content = $content."stylelist = cell(".$size.",1);\n\n";
+        $content = $content.'parameters = cell('.$size.", 1);\n\n";
+
+        foreach ($value as $key=>$mod)
         {
-          fwrite($fh, $model['params'][0]['value']."\n");
+          $model=Spectrum::model()->findByPk($mod['id']);
+          $content = $content.'namelist{'."$key+1".'} = '."'".$model->name."';\n\n";
+          $content = $content.'funclist{'."$key+1".'} = '."'".$model->func_name."';\n\n";
+          $content = $content.'colorlist{'."$key+1".'} = '."'".$mod['color']."';\n\n";
+          $content = $content.'widthlist{'."$key+1".'} = '.$mod['lineWidth'].";\n\n";
+          $content = $content.'stylelist{'."$key+1".'} = '."'".$mod['lineStyle']."';\n\n";
+
+          $content = $content.'parameters{'."$key+1".'} = cell(1,'.sizeof($mod['params']).");\n";  
+          foreach ($mod['params'] as $para)
+          {
+            $content = $content.'parameters{'."$key+1, ".$para['position'].'} = '.$para['value']."; \n";
+          }
+          $content = $content."\n";
         }
       }
     }
 
-    // $text = null; 
-    // for ($i = 0 ; $i < sizeof($selection);$i++)
-    // {
-    //   for($n = 0; $n < sizeof($selection[$i][1]);$n++)
-    //   {
-    //     $text = $text."[ ".$selection[$i][0]. ", ".$selection[$i][1][$n]."]; ";
-    //     // [ 1, 2] means coms_2 , [0,1] means astro_1 
-    //     }
-    //   }
-    // $text = "[ ".$text."]";
-    // fwrite($fh,"selection = ".$text.";\n\n");
-    // //fwrite($fh,"  global selection, selection = ".$text.";\n\n");
-    // 
-    // //fwrite($fh,"end");
+    fwrite($fh,$content);
     fclose($fh);
-    
+  }
+
+  public function plot()
+  {
+    return exec("matlab -nodesktop -r entry_project   1>logfiles/matlab_output.log 2>&1 ");
   }
 
 }

@@ -17,8 +17,8 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'model_id'); ?>
-		<?php echo $form->textField($model,'model_id'); ?>
+		<?php echo $form->label($model,'spectrum_id'); ?>
+		<?php echo $form->textField($model,'spectrum_id'); ?>
 	</div>
 
 	<div class="row">

@@ -18,8 +18,8 @@
 
 	<div class="row-fluid">
 		<?php echo $form->labelEx($model,'Model'); ?>
-  	<?php echo $form->dropDownList($model,'model_id', CHtml::listData(Models::model()->findAll(), 'id', 'name')); ?>    
-		<?php echo $form->error($model,'model_id'); ?>
+  	<?php echo $form->dropDownList($model,'spectrum_id', CHtml::listData(Spectrum::model()->findAll(), 'id', 'name')); ?>    
+		<?php echo $form->error($model,'spectrum_id'); ?>
 	</div>
 
 	<div class="row-fluid">

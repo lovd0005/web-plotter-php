@@ -1,12 +1,9 @@
 function [p, ax,auto, id, credit] = para_process()
 % Return output [p, f, ax, id, credit] using the para_input.m wrotten by CGI
 % following data types in array structure p().
-% 	.data - {[xy data],[more xy data]}
 % 	.label - 'short label of data'
-% 	.file - 'file'
 % 	.color - e.g. 'r'
 % 	.style - e.g. 'fill', 'line' etc
-% 	.data_rescale - e.g. [1 1]
 % output f as frequencies calculated
 % output ax as information for axis setting
 % output id as the processID for the fianl graph
@@ -81,33 +78,21 @@ end;
 fprintf('start the data generating \n');
 
 % global selection;
-mod_number = size(selection,1); %  return the # of rows of selections
+% mod_number = size(selection,1); %  return the # of rows of selections
 p = struct;
 p = repmat(p,1,mod_number);
 
 disp('Constructing data structure p');
 
 for i = 1 : mod_number 
-  temp = [char(catag(selection(i,1)+1)) '_' int2str(selection(i,2))];
-  p(i).color = char(eval([temp '_color']));
-  p(i).style = eval([temp '_style']);
-  p(i).width = eval([temp '_width']);
-  if (selection(i,1) ==0)
-      %p(i).end = eval([temp '_sfr']);
-      p(i).end = sfrate;
-  else
-      p(i).end = numpoints;
-  end
-  para_text = '';
-  for n = 1 : paraspace(selection(i,1)+1,selection(i,2))
-    para_text = [para_text temp '_para_' int2str(n) ', '];
-  end;
-  state = [char(funcspace(selection(i,1)+1,selection(i,2)))...
-          '(f,' para_text 'p(i).end )']; 
-  [domain, Omega]  = eval(state);
+  p(i).color = colorlist{i};
+  p(i).style = stylelist{i};
+  p(i).width = widthlist{i};
+
+  [domain, Omega]  = eval([funclist{i} '(f, parameters{i,:} , sfrate )']);
   p(i).domain = domain;
   p(i).data = Omega;
-  p(i).label = char(namespace(selection(i,1)+1,selection(i,2)));
+  p(i).label = namelist{i};
 end;
 
 end

@@ -8,14 +8,15 @@ class PlotterController extends Controller
     if(isset($_POST['Spectrum']) && isset($_POST['Plotter']) )
     {
     	$_POST['Plotter']['spectrums'] = $_POST['Spectrum'];
+    	$_POST['Plotter']['id']= rand();
       $plotter->attributes=$_POST['Plotter'];
 			if ($plotter->validate())
       {
         // $this->redirect(array('plot','plotConfig'=>$_POST['Plotter'] ));
         $plotter->attributes=$_POST['Plotter'];
         $plotter->loadModelConfig();
-        echo $plotter->plot();
-        $this->render('paras', array('plotter'=>$plotter, 'plotconfig'=>$_POST['Plotter']));
+        // echo $plotter->plot();
+        $this->render('figure', array('plotter'=>$plotter, 'plotconfig'=>$_POST['Plotter']));
       }
 
     }

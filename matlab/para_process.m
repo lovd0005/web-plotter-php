@@ -16,7 +16,7 @@ para_input;	% load the file contains para. from the <form> tag
 func_name = 'para_process';
 
 %% Get the id & credit and check if it is a number
-id = num2str(floor(rand(1,1)*1E6)); 
+% id = num2str(floor(rand(1,1)*1E6)); 
 
 % global no_idtext no_name;
 if exist('removeSiteInfo','var') 

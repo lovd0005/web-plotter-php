@@ -14,13 +14,15 @@ class PlotterController extends Controller
       {
         // $this->redirect(array('plot','plotConfig'=>$_POST['Plotter'] ));
         $plotter->attributes=$_POST['Plotter'];
-        $plotter->loadModelConfig();
+        // $plotter->loadModelConfig();
         // echo $plotter->plot();
         $this->render('figure', array('plotter'=>$plotter, 'plotconfig'=>$_POST['Plotter']));
+        echo "<div class='well'>".$plotter->pyecho()."</div>";
       }
 
     }
     $modeltypes=Modeltype::model()->findAll();
+    // print_r($_POST['Plotter']);
 		$this->render('index', array('modeltypes'=>$modeltypes,'plotter'=>$plotter));
      
 	}
@@ -29,7 +31,7 @@ class PlotterController extends Controller
   {
     $plotter=new Plotter; 
     $plotter->attributes=$plotConfig;
-    $plotter->loadModelConfig();
+    // $plotter->loadModelConfig();
     $this->render('paras', array('plotter'=>$plotter, 'plotconfig'=>$plotConfig));
   }
 

@@ -82,7 +82,7 @@ INSERT INTO tbl_spectrum (name, type_id, para_num) VALUES ('LIGO S5', 3, 0);
 INSERT INTO tbl_spectrum (name, type_id, para_num) VALUES ('BBN', 3, 0);
 INSERT INTO tbl_spectrum (name, type_id, para_num) VALUES ('CMB+LSS', 3, 0);
 
-INSERT INTO tbl_spectrum (name, type_id, para_num) VALUES ('Advanced LIGO', 4,0 );
+INSERT INTO tbl_spectrum (name, func_name, type_id, para_num) VALUES ('Advanced LIGO', 'advan_LIGO', 4,0 );
 INSERT INTO tbl_spectrum (name, type_id, para_num) VALUES ('LISA', 4, 0);
 INSERT INTO tbl_spectrum (name, type_id, para_num) VALUES ('CMB+LSS',  4,0 );
 INSERT INTO tbl_spectrum (name, type_id, para_num) VALUES ('Planck Projection', 4,0 );

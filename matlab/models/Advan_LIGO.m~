@@ -1,5 +1,0 @@
-function [domain, omega] = LIGO_S3()
-loglog([40 300],[1 1]*8e-10,'k-','linewidth',3)
-
-end;
-

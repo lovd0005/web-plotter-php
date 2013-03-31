@@ -1,6 +1,0 @@
-function time=tc(z)
-constant;
-zc=0:z/1000:z;
-temp = 1./(Ez(0.3,0.7,zc).*(1+zc));
-time =0.001*z*trapz(zc,temp)/(H0*Gyr);
-end

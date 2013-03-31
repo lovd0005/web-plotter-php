@@ -1,1 +1,45 @@
-sh: 1: /usr/local/bin/matlab: not found
+/local/site/pkg/matlab2010b/bin/matlab: line 396: expr: command not found
+/local/site/pkg/matlab2010b/bin/matlab: line 419: expr: command not found
+/local/site/pkg/matlab2010b/bin/matlab: line 419: [: -ne: unary operator expected
+/local/site/pkg/matlab2010b/bin/matlab: line 226: expr: command not found
+/local/site/pkg/matlab2010b/bin/util/oscheck.sh: line 127: expr: command not found
+/local/site/pkg/matlab2010b/bin/util/oscheck.sh: line 138: [: -eq: unary operator expected
+/local/site/pkg/matlab2010b/bin/util/oscheck.sh: line 177: head: command not found
+Warning: No display specified.  You will not be able to display graphics on the screen.
+Warning: No window system found.  Java option 'MWT' ignored
+Warning: failed to create preference directory /tmp/.matlab/R2010b.
+Check directory permissions.Warning: failed to create preference directory /tmp/.matlab/R2010b.
+Check directory permissions.Warning: failed to create preference directory /tmp/.matlab/R2010b.
+Check directory permissions.
+                            < M A T L A B (R) >
+                  Copyright 1984-2010 The MathWorks, Inc.
+                Version 7.11.0.584 (R2010b) 32-bit (glnx86)
+                              August 16, 2010
+
+Warning: failed to create preference directory /tmp/.matlab/R2010b.
+Check directory permissions.Warning: failed to create preference directory /tmp/.matlab/R2010b.
+Check directory permissions. 
+  To get started, type one of these: helpwin, helpdesk, or demo.
+  For product information, visit www.mathworks.com.
+ 
+Warning: failed to create preference directory /tmp/.matlab/R2010b.
+Check directory permissions.entry_project.m: Path Added (TIME =   0.4) 
+start the data generating 
+Constructing data structure p
+*************************************************
+Beginning Magnetar Calculation
+Finished Magnetar Calculation
+*************************************************
+Error in ==> para_process at 14
+clear all;
+
+{??? Output argument "id" (and maybe others) not assigned during call to
+"/home/user1/cwu/public_html/matlab/para_process.m>para_process".
+
+Error in ==> entry_project at 29
+	[p, ax, auto, id, credit]= para_process();
+} 
+Warning: failed to create preference directory /tmp/.matlab/R2010b.
+Check directory permissions.Warning: failed to create preference directory /tmp/.matlab/R2010b.
+Check directory permissions.Warning: failed to create preference directory /tmp/.matlab/R2010b.
+Check directory permissions.

@@ -1,3 +1,0 @@
-function [domain, omega] = Planck_Proj()
-domian[1e-15 1e10],[1 1]*2.7e-6,'m--','linewidth',3)
-text(1.2e-15,1e-6,'Planck','FontSize',18,'Color','m')

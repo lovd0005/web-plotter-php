@@ -111,48 +111,7 @@ class Plotter extends CFormModel
 
   public function plot()
   {
-    $setEnv='expor PATH=/local/site/pkg/matlabR201/bin/:';
-    $setEvn=$setEnv.'/usr/local/bin/:$PATH;'; 
-    $setEnv=$setEnv.'export $LD_LIBRARY_PATH=/scisoft/lib:';
-    $setEnv=$setEnv.'/scisoft/share/karma/lib/;';
-    // return exec($setEnv."/local/site/pkg/matlab2010b/bin/matlab -nodesktop -r entry_project   1>logfiles/matlab_output.log 2>&1 ");
-    return shell_exec($setEnv."/usr/local/bin/matlab -nodeskto -r entry_project   1>logfiles/matlab_output.log 2>&1 ");
-
+    return shell_exec("python ../cgi-bin/agg.cgi". escapeshellarg(json_encode($this->attributes)). " 2>&1");
   }
-  
-  public function pyecho()
-  {
-    $descriptorspec = array(
-       0 => array("pipe", "r"),  // stdin is a pipe that the child will read from
-       1 => array("pipe", "w"),  // stdout is a pipe that the child will write to
-       2 => array("file", "/tmp/error-output.txt", "a") // stderr is a file to write to
-    );
-
-    $cwd = '/tmp';
-    $env = array('some_option' => 'aeiou');
-
-    $process = proc_open('php', $descriptorspec, $pipes, $cwd, $env);
-
-    if (is_resource($process)) {
-        // $pipes now looks like this:
-        // 0 => writeable handle connected to child stdin
-        // 1 => readable handle connected to child stdout
-        // Any error output will be appended to /tmp/error-output.txt
-
-        fwrite($pipes[0], $this->spectrums);
-        fclose($pipes[0]);
-
-        $out = (stream_get_contents($pipes[1]));
-        fclose($pipes[1]);
-
-        // It is important that you close any pipes before calling
-        // proc_close in order to avoid a deadlock
-        $return_value = proc_close($process);
-
-        // echo "command returned $return_value\n";
-        return $out;
-    }
-  }
-  
 
 }

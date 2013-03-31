@@ -13,11 +13,10 @@ class PlotterController extends Controller
 			if ($plotter->validate())
       {
         // $this->redirect(array('plot','plotConfig'=>$_POST['Plotter'] ));
-        $plotter->attributes=$_POST['Plotter'];
-        $plotter->loadModelConfig();
+        // $plotter->attributes=$_POST['Plotter'];
+        // $plotter->loadModelConfig();
         echo $plotter->plot();
-        $this->render('figure', array('plotter'=>$plotter, 'plotconfig'=>$_POST['Plotter']));
-        echo "<div class='well'>".$plotter->pyecho()."</div>";
+        // $this->render('figure', array('plotter'=>$plotter, 'plotconfig'=>$_POST['Plotter']));
       }
 
     }

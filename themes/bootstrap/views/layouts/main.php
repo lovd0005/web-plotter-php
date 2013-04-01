@@ -7,7 +7,7 @@
 
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/styles.css" />
 
-	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
+	<title><?php echo Entity::model()->findByAttributes(array('name'=>'site_title'))->content;?></title>
 
 	<?php Yii::app()->bootstrap->register(); ?>
 </head>
@@ -17,6 +17,7 @@
   <?php $this->widget('bootstrap.widgets.TbNavbar',array(
       'type'=>'inverse',
       'fluid'=>false,
+      'brand'=>Entity::model()->findByAttributes(array('name'=>'site_title'))->content,
       // 'fixed'=>false,
       'collapse'=>true,
       'items'=>array(

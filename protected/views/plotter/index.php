@@ -5,13 +5,15 @@
 ?>
 
 <div class="page-header">
-  <h1 class="text-center">Welcome to <?php echo CHtml::encode(Yii::app()->name)?>
-    <small><p>An Interactive Plotter for Energy Spectrum of Stochastic Gravitational Wave Backgrounds from Various Theoretical Models</p>
-    </small>
+  <h1 class="text-center">
+    Welcome to 
+    <?php echo Entity::model()->findByAttributes(array('name'=>'site_title'))->content; ?>
+    <small><p>
+    <?php echo Entity::model()->findByAttributes(array('name'=>'site_head'))->content; ?>
+    </p></small>
   </h1>
   <div class="well">
-    <?php  
-    $parser = new CMarkdownParser;
+    <?php $parser = new CMarkdownParser;
     $tmp = Entity::model()->findByAttributes(array('name'=>'site_inform'))->content;
     echo $parser->safeTransform($tmp); ?>
   </div>
@@ -105,10 +107,10 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
     </th></tr>
     
     <tr>
-			<th class="span3">GW Model Name</th>
-			<th class="span4">Parameters </th>
+			<th class="span3">Model Name</th>
+			<th class="span4">Parameters</th>
 			<th class="span2">Plot Specify</th>
-			<th class="span3">Introduction </th>
+			<th class="span3">Introduction</th>
 		</tr>
 	</thead>	
 	

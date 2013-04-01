@@ -9,7 +9,7 @@ Yii::setPathOfAlias('matlabpath', '/usr/local/bin/');
 // CWebApplication properties can be configured here.
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'SGWB Plotter',
+	'name'=>'Interactive Online Plotter',
 
 	// change the default controller to the plotter
 	'defaultController' => 'plotter/index',

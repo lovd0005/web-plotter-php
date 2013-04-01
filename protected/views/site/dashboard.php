@@ -17,6 +17,7 @@ $this->widget('bootstrap.widgets.TbMenu', array(
         array('label'=>'Line Style', 'url'=>$this->createUrl('linestyle/index')),
         array('label'=>'Star Formation Rate', 'url'=>$this->createUrl('sfrate/index')),
         array('label'=>'Modeltype', 'url'=>$this->createUrl('modeltype/index')),
+        array('label'=>'site_data', 'url'=>$this->createUrl('entity/index')),
     ),
 )); 
 ?>

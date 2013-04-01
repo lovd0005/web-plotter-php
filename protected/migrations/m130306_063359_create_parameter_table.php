@@ -10,7 +10,7 @@ class m130306_063359_create_parameter_table extends CDbMigration
       'detail' => 'text',
       'spectrum_id' => 'integer not null',
       'value' => 'string',
-      'position' => 'integer'
+      'variable' => 'string not null'
     ));
 	}
 

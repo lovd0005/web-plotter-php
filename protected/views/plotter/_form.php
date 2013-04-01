@@ -8,13 +8,14 @@
     <?php echo CHtml::activeCheckBox($model,"[$i]toPlot"); ?>
     <?php echo CHtml::encode($model->name); ?>
     <?php echo CHtml::activehiddenField($model,"[$i]id"); ?>
+    <?php echo CHtml::activehiddenField($model,"[$i]func_name"); ?>
   </label></td>
   
   <td class="">
     <?php 
       foreach ($model->parameters as $k=>$parameter){
       	echo CHtml::encode($parameter->name).CHtml::encode($parameter->detail); 
-        echo CHtml::activehiddenField($parameter,"position",array('class'=>'span1','name'=>"Spectrum[$i][params][$k][position]"));
+        echo CHtml::activehiddenField($parameter,"variable",array('class'=>'span1','name'=>"Spectrum[$i][params][$k][variable]"));
         echo CHtml::activeTextField($parameter,"[$i][$k]value",array('class'=>'span1','name'=>"Spectrum[$i][params][$k][value]")).'<br>';
         
       } ?>

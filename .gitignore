@@ -1,8 +1,10 @@
 .DS_Store
 test.php
 matlab/para_input.m
-/cgi-bin
+cgi-bin/*
+!cgi-bin/agg.cgi
 check.php
 test.png
 protected/runtime/
 themes/classic/views/
+assets/

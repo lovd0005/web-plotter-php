@@ -15,7 +15,8 @@ class PlotterController extends Controller
         // $this->redirect(array('plot','plotConfig'=>$_POST['Plotter'] ));
         // $plotter->attributes=$_POST['Plotter'];
         // $plotter->loadModelConfig();
-        echo $plotter->plot();
+        $figures = $plotter->plot();
+        $this->render('box', array('figures'=>$figures));
         // $this->render('figure', array('plotter'=>$plotter, 'plotconfig'=>$_POST['Plotter']));
       }
 
@@ -23,7 +24,6 @@ class PlotterController extends Controller
     $modeltypes=Modeltype::model()->findAll();
     // print_r($_POST['Plotter']);
 		$this->render('index', array('modeltypes'=>$modeltypes,'plotter'=>$plotter));
-     
 	}
   
   public function actionPlot(array $plotConfig)

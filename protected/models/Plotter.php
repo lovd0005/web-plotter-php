@@ -111,7 +111,8 @@ class Plotter extends CFormModel
 
   public function plot()
   {
-    return shell_exec("python ./cgi-bin/agg.cgi ".escapeshellarg(json_encode($this->attributes)). " 2>&1");
+    $passing = escapeshellarg(CJSON::encode($this->attributes));    
+    return shell_exec("/usr/bin/python ./cgi-bin/agg.cgi ".$passing." 2>&1");
   }
 
 }

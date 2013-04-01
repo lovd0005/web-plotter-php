@@ -4,8 +4,14 @@
 
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
-import cStringIO, json, sys, numpy
-workspace = '/Users/Chengjian/Workshop/'
+import cStringIO, sys, numpy
+homedir = '/home/user1/cwu'
+sys.path.insert(0, homedir + '/pyEnv/lib/python2.4/site-packages/')
+try:
+    import json
+except ImportError:
+    import simplejson as json
+workspace = '/home/user1/cwu/Workspace/'
 sys.path.insert(0, workspace)
 import spectrum.domain as domain
 import spectrum.spectrums as spectrums

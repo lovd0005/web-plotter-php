@@ -37,8 +37,8 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'position'); ?>
-		<?php echo $form->textField($model,'position'); ?>
+		<?php echo $form->label($model,'variable'); ?>
+		<?php echo $form->textField($model,'variable',array('size'=>60,'maxlength'=>255)); ?>
 	</div>
 
 	<div class="row buttons">

@@ -1,3 +1,3 @@
 <div class="well">
-<?php echo $figures; ?>
+<?php print_r($figures); ?>
 </div>

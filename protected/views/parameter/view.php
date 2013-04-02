@@ -26,6 +26,6 @@ $this->menu=array(
 		'detail',
 		'spectrum_id',
 		'value',
-		'position',
+		'variable',
 	),
 )); ?>

@@ -8,7 +8,6 @@ class PlotterController extends Controller
     if(isset($_POST['Spectrum']) && isset($_POST['Plotter']) )
     {
     	$_POST['Plotter']['spectrums'] = $_POST['Spectrum'];
-    	$_POST['Plotter']['id']= rand();
       $plotter->attributes=$_POST['Plotter'];
 			if ($plotter->validate())
       {

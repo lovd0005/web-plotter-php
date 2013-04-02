@@ -40,9 +40,9 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'position'); ?>
-		<?php echo $form->textField($model,'position'); ?>
-		<?php echo $form->error($model,'position'); ?>
+		<?php echo $form->labelEx($model,'variable'); ?>
+		<?php echo $form->textField($model,'variable',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->error($model,'variable'); ?>
 	</div>
 
 	<div class="row buttons">

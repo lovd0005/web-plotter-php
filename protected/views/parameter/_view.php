@@ -25,8 +25,8 @@
 	<?php echo CHtml::encode($data->value); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('position')); ?>:</b>
-	<?php echo CHtml::encode($data->position); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('variable')); ?>:</b>
+	<?php echo CHtml::encode($data->variable); ?>
 	<br />
 
 

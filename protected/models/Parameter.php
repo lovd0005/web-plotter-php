@@ -9,7 +9,7 @@
  * @property string $detail
  * @property integer $spectrum_id
  * @property string $value
- * @property integer $position
+ * @property string $variable
  */
 class Parameter extends CActiveRecord
 {
@@ -39,13 +39,13 @@ class Parameter extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, spectrum_id', 'required'),
-			array('spectrum_id, position', 'numerical', 'integerOnly'=>true),
-			array('name, value', 'length', 'max'=>255),
+			array('name, spectrum_id, variable', 'required'),
+			array('spectrum_id', 'numerical', 'integerOnly'=>true),
+			array('name, value, variable', 'length', 'max'=>255),
 			array('detail', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, detail, spectrum_id, value, position', 'safe', 'on'=>'search'),
+			array('id, name, detail, spectrum_id, value, variable', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -71,7 +71,7 @@ class Parameter extends CActiveRecord
 			'detail' => 'Detail',
 			'spectrum_id' => 'Spectrum',
 			'value' => 'Value',
-			'position' => 'Position',
+			'variable' => 'Variable',
 		);
 	}
 
@@ -91,7 +91,7 @@ class Parameter extends CActiveRecord
 		$criteria->compare('detail',$this->detail,true);
 		$criteria->compare('spectrum_id',$this->spectrum_id);
 		$criteria->compare('value',$this->value,true);
-		$criteria->compare('position',$this->position);
+		$criteria->compare('variable',$this->variable,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

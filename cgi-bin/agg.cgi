@@ -6,12 +6,15 @@ from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
 import cStringIO, sys, numpy
 homedir = '/home/user1/cwu'
-sys.path.insert(0, homedir + '/pyEnv/lib/python2.4/site-packages/')
+# sitepackages = homedir + '/pyEnv/lib/python2.4/site-packages/'
+sitepackages = '/Users/Chengjian/pyEnv/lib/python2.5/site-packages/'
+sys.path.insert(0, sitepackages)
 try:
     import json
 except ImportError:
     import simplejson as json
-workspace = '/home/user1/cwu/Workspace/'
+# workspace = '/home/user1/cwu/Workspace/'
+workspace = '/Users/Chengjian/Workshop/'
 sys.path.insert(0, workspace)
 import spectrum.domain as domain
 import spectrum.spectrums as spectrums
@@ -26,10 +29,33 @@ xmin = int( data['xmin'])
 xmax = int( data['xmax'])
 f = domain.axis_frequences(numpoints,xmin, xmax)
 # f = domain.axis_frequences(6 ,1 ,10)
-for x in data['spectrums']:
-    if x['toPlot'] == '1':
-        omega = getattr(spectrums, x['func_name'])(f)
+# print type(data['spectrums']).__name__
+if type(data['spectrums']) == list:
+    for item in data['spectrums']:
+        parameters = ""
+        if 'params' in item:
+            for para in item['params']:
+                parameters += ', ' + para['variable'] + '=' + str(para['value']) 
+        omega = eval('spectrums.' + item['func_name'] + '(f ' + parameters + ')')
         ax.loglog(f,omega)
+        
+if type(data['spectrums']) == dict:
+    for key,item in data['spectrums'].items():
+        parameters = ""
+        if 'params' in item:
+            for para in item['params']:
+                parameters += ', ' + para['variable'] + '=' + str(para['value']) 
+        omega = eval('spectrums.' + item['func_name'] + '(f ' + parameters + ')')
+        ax.loglog(f,omega)
+
+        
+# for key in data['spectrums']:
+#     # print json.dumps(data['spectrums'])
+#     print type(key).__name__
+#     if 'params' in data['spectrums'][key]:
+#         print json.dumps(spectrum['params'])
+    # omega = getattr(spectrums, spectrum['func_name'])(f)
+    # ax.loglog(f,omega)
 # ax.set_title('LIGO_S5')
 ax.grid(True)
 ax.set_xlabel('Frequency nu [Hz]')
@@ -46,9 +72,10 @@ print "<div class=\"row\">"
 print "<img src=\"data:image/png;base64,%s\" class=\"img-rounded span6\"/>" % tmpimg.getvalue().encode("base64").strip()
 print "<a href=\"data:application/pdf;base64,%s\">Save PDF as</a>" % tmppdf.getvalue().encode("base64").strip()
 print "</div>"
-# print "<div class=\"row\">"
-# print "<pre class=\"span10\">"
+print "<div class=\"row\">"
+print "<pre class=\"span10\">"
 # print(json.dumps(data, sort_keys=True, indent=4, separators=(',', ': ')))
+# print(json.dumps(data['spectrums']))
 # print json.dumps(data['xmin'], sort_keys=True, indent=4, separators=(',', ': ')) 
 # print json.dumps(data['spectrums'], sort_keys=True, indent=4, separators=(',', ': ')) 
 # for x in data['spectrums']:
@@ -58,7 +85,6 @@ print "</div>"
 #     # print x
 # print xmin 
 # print xmax
-# print numpoints
-# print "</pre>"
-# print "</div>"
+print "</pre>"
+print "</div>"
 

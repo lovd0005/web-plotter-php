@@ -4,7 +4,9 @@
 
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
-import cStringIO, sys, numpy
+from matplotlib import rc
+import cStringIO, sys, os
+os.environ['PATH'] = os.environ['PATH'] + ':/usr/local/bin:/usr/texbin'
 homedir = '/home/user1/cwu'
 # sitepackages = homedir + '/pyEnv/lib/python2.4/site-packages/'
 sitepackages = '/Users/Chengjian/pyEnv/lib/python2.5/site-packages/'
@@ -58,8 +60,10 @@ if type(data['spectrums']) == dict:
     # ax.loglog(f,omega)
 # ax.set_title('LIGO_S5')
 ax.grid(True)
-ax.set_xlabel('Frequency nu [Hz]')
-ax.set_ylabel('Energy Spectrum Omega')
+rc('text', usetex=True)
+rc('font', family='serif')
+ax.set_xlabel(r'Frequency $\nu$ [Hz]')
+ax.set_ylabel(r'Energy Spectrum $\Omega$')
 tmpimg = cStringIO.StringIO()
 canvas.print_figure(tmpimg)
 tmppdf = cStringIO.StringIO()

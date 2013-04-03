@@ -24,8 +24,11 @@
 
 <?php /** @var BootActiveForm $form */
 $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
-    'id'=>'verticalForm',
+    'action'=>Yii::app()->createUrl('/plotter/plot'),
+    'id'=>'horizontalForm',
+    'type'=>'horizontal',
     'htmlOptions'=>array(
+      'target'=>"_blank"
 // 'onsubmit'=>'window.open('.'"index.php?r=plotter/index"'.',"popup","width=800,height=400")'
 ))); ?>
   <!-- <form method="post" action="dialing.php" id="wrapper_Data_Form" onsubmit="popup(this)"> -->
@@ -97,8 +100,6 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	</tr>
 </table>
 
-  <div class="row"></div>
-  
 	<table class="table table-striped">
 	<thead>
     <tr><th colspan="4" class="text-center">      

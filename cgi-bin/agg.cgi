@@ -4,7 +4,7 @@
 
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
-from matplotlib import rc
+# from matplotlib import rc
 import cStringIO, sys, os
 os.environ['PATH'] = os.environ['PATH'] + ':/usr/local/bin:/usr/texbin'
 homedir = '/home/user1/cwu'
@@ -39,7 +39,8 @@ if type(data['spectrums']) == list:
             for para in item['params']:
                 parameters += ', ' + para['variable'] + '=' + str(para['value']) 
         omega = eval('spectrums.' + item['func_name'] + '(f ' + parameters + ')')
-        ax.loglog(f,omega)
+
+        ax.loglog(f,omega, label=item['name'], color=item['color'], linewidth=item['lineWidth'], linestyle=item['lineStyle'])
         
 if type(data['spectrums']) == dict:
     for key,item in data['spectrums'].items():
@@ -48,7 +49,7 @@ if type(data['spectrums']) == dict:
             for para in item['params']:
                 parameters += ', ' + para['variable'] + '=' + str(para['value']) 
         omega = eval('spectrums.' + item['func_name'] + '(f ' + parameters + ')')
-        ax.loglog(f,omega)
+        ax.loglog(f,omega, label=item['name'], color=item['color'], linewidth=item['lineWidth'], linestyle=item['lineStyle'])
 
         
 # for key in data['spectrums']:
@@ -58,22 +59,32 @@ if type(data['spectrums']) == dict:
 #         print json.dumps(spectrum['params'])
     # omega = getattr(spectrums, spectrum['func_name'])(f)
     # ax.loglog(f,omega)
-# ax.set_title('LIGO_S5')
+
+credit_inform = ''
+if data['removeBuilderInfo'] == '0':
+    credit_inform += data['credit_name']
+if data['removeSiteInfo'] == '0':
+    credit_inform += '\n' + data['credit_site']
+if credit_inform != '':
+    ax.set_title(credit_inform)
 ax.grid(True)
-rc('text', usetex=True)
-rc('font', family='serif')
-ax.set_xlabel(r'Frequency $\nu$ [Hz]')
-ax.set_ylabel(r'Energy Spectrum $\Omega$')
+# rc('text', usetex=True)
+# rc('font', family='serif')
+ax.set_xlabel(r'Frequency f [Hz]')
+ax.set_ylabel(r'Energy Spectrum Omega')
+handles, labels = ax.get_legend_handles_labels()
+lgd = ax.legend(handles, labels, loc='upper left', bbox_to_anchor=(1.05, 1))
+
 tmpimg = cStringIO.StringIO()
-canvas.print_figure(tmpimg)
+canvas.print_figure(tmpimg, bbox_extra_artists=(lgd,), bbox_inches='tight')
 tmppdf = cStringIO.StringIO()
-canvas.print_figure(tmppdf, format="pdf")
+canvas.print_figure(tmppdf, format="pdf", bbox_extra_artists=(lgd,), bbox_inches='tight')
 
 
 
 
 print "<div class=\"row\">"
-print "<img src=\"data:image/png;base64,%s\" class=\"img-rounded span6\"/>" % tmpimg.getvalue().encode("base64").strip()
+print "<img src=\"data:image/png;base64,%s\" class=\"span8\"/>" % tmpimg.getvalue().encode("base64").strip()
 print "<a href=\"data:application/pdf;base64,%s\">Save PDF as</a>" % tmppdf.getvalue().encode("base64").strip()
 print "</div>"
 print "<div class=\"row\">"

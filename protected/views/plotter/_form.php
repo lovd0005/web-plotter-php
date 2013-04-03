@@ -7,6 +7,7 @@
   <td><label class="checkbox">
     <?php echo CHtml::activeCheckBox($model,"[$i]toPlot"); ?>
     <?php echo CHtml::encode($model->name); ?>
+    <?php echo CHtml::activehiddenField($model,"[$i]name"); ?>
     <?php echo CHtml::activehiddenField($model,"[$i]id"); ?>
     <?php echo CHtml::activehiddenField($model,"[$i]func_name"); ?>
   </label></td>

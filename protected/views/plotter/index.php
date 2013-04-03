@@ -126,14 +126,17 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
     } ?>
 
 
-  	<tr><td colspan="4" class="text-center">
-  		 <label class="checkbox">
-         <?php echo CHtml::activeCheckBox($plotter,"removeSiteInfo"); ?>
-         Check here to remove site information from main plot.</label>
-    </td></tr> 
+  	<tr><td colspan="4" class="text-center"><label class="checkbox">
+      <?php echo CHtml::activeCheckBox($plotter,"removeSiteInfo"); ?>
+      <?php $credit_site = Entity::model()->findByAttributes(array('name'=>'credit_site'))->content;
+            echo CHtml::hiddenField('Plotter[credit_site]',$credit_site ) ?>
+      Check here to remove site information from main plot.
+    </label></td></tr> 
     
     <tr><td colspan="4" class="text-center"><label class="checkbox">
       <?php echo CHtml::activeCheckBox($plotter,"removeBuilderInfo"); ?>
+      <?php $credit_name = Entity::model()->findByAttributes(array('name'=>'credit_name'))->content;
+            echo CHtml::hiddenField('Plotter[credit_name]',$credit_name ) ?>
       Check here to remove our names from main plot.
     </label></td></tr>
   

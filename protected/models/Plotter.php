@@ -17,6 +17,8 @@ class Plotter extends CFormModel
   public $manually;
   public $removeSiteInfo;
   public $removeBuilderInfo;
+  public $credit_site;
+  public $credit_name;
 
 	/**
 	 * Declares the validation rules.
@@ -38,7 +40,7 @@ class Plotter extends CFormModel
       // array('password', 'authenticate'),
 			array(
         'xmin, xmax, ymin, ymax, numpoints, 
-        models, sfrate, manually, removeSiteInfo, removeBuilderInfo', 
+        models, sfrate, manually, removeSiteInfo, removeBuilderInfo, credit_site, credit_name', 
         'safe'
       ),
 		);

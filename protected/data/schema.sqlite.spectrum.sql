@@ -88,11 +88,11 @@ INSERT INTO tbl_spectrum (name, func_name, type_id, para_num) VALUES ('Planck Pr
 
 
 
-INSERT INTO tbl_sfrate (name, sf_para) VALUES ('Hopkins & Beacom 2006', "'h'");
-INSERT INTO tbl_sfrate (name, sf_para) VALUES ('Fardal 2007', "'f'");
-INSERT INTO tbl_sfrate (name, sf_para) VALUES ('Wilken 2008', "'w'");
-INSERT INTO tbl_sfrate (name, sf_para) VALUES ('Nagamine et al. 2006 (fossil model)', "'n'");
-INSERT INTO tbl_sfrate (name, sf_para) VALUES ('Springel & Hernquist 2003', "'s'");
+INSERT INTO tbl_sfrate (name, sf_para) VALUES ('Hopkins & Beacom 2006', "h");
+INSERT INTO tbl_sfrate (name, sf_para) VALUES ('Fardal 2007', "f");
+INSERT INTO tbl_sfrate (name, sf_para) VALUES ('Wilken 2008', "w");
+INSERT INTO tbl_sfrate (name, sf_para) VALUES ('Nagamine et al. 2006 (fossil model)', 'n');
+INSERT INTO tbl_sfrate (name, sf_para) VALUES ('Springel & Hernquist 2003', 's');
 
 INSERT INTO tbl_color (name, value)  VALUES ('green', 'g');
 INSERT INTO tbl_color (name, value)  VALUES ('white', 'w');

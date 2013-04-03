@@ -22,6 +22,8 @@ import spectrum.domain as domain
 import spectrum.spectrums as spectrums
 data = json.loads(sys.argv[1])
 
+spectrums.sfr = data['sfrate']
+
 fig = Figure()
 canvas = FigureCanvas(fig)
 # ax = fig.add_subplot(111)
@@ -89,7 +91,7 @@ print "<a href=\"data:application/pdf;base64,%s\">Save PDF as</a>" % tmppdf.getv
 print "</div>"
 print "<div class=\"row\">"
 print "<pre class=\"span10\">"
-# print(json.dumps(data, sort_keys=True, indent=4, separators=(',', ': ')))
+print(json.dumps(data, sort_keys=True, indent=4, separators=(',', ': ')))
 # print(json.dumps(data['spectrums']))
 # print json.dumps(data['xmin'], sort_keys=True, indent=4, separators=(',', ': ')) 
 # print json.dumps(data['spectrums'], sort_keys=True, indent=4, separators=(',', ': ')) 

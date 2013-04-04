@@ -117,7 +117,7 @@ class Plotter extends CFormModel
     if (empty($models)) { return 'No input data'; }
     $this->spectrums = $models;
     $passing = escapeshellarg(CJSON::encode($this->attributes));    
-    return shell_exec("/usr/bin/python ./cgi-bin/agg.cgi ".$passing." 2>&1");
+    return shell_exec("/usr/bin/python ./cgi-bin/agg.cgi ".$passing." 2>logfiles/output.log");
   }
 
 }

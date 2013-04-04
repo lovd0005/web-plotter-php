@@ -1,22 +1,21 @@
 #!/usr/bin/python
 # -*- noplot -*-
 
-
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
-from matplotlib.figure import Figure
+from matplotlib.figure import Figure, figaspect
 # from matplotlib import rc
 import cStringIO, sys, os
 os.environ['PATH'] = os.environ['PATH'] + ':/usr/local/bin:/usr/texbin'
 homedir = '/home/user1/cwu'
-# sitepackages = homedir + '/pyEnv/lib/python2.4/site-packages/'
-sitepackages = '/Users/Chengjian/pyEnv/lib/python2.5/site-packages/'
+sitepackages = homedir + '/pyEnv/lib/python2.4/site-packages/'
+# sitepackages = '/Users/Chengjian/pyEnv/lib/python2.5/site-packages/'
 sys.path.insert(0, sitepackages)
 try:
     import json
 except ImportError:
     import simplejson as json
-# workspace = '/home/user1/cwu/Workspace/'
-workspace = '/Users/Chengjian/Workshop/'
+workspace = '/home/user1/cwu/Workspace/'
+# workspace = '/Users/Chengjian/Workshop/'
 sys.path.insert(0, workspace)
 import spectrum.domain as domain
 import spectrum.spectrums as spectrums
@@ -75,23 +74,47 @@ ax.grid(True)
 ax.set_xlabel(r'Frequency f [Hz]')
 ax.set_ylabel(r'Energy Spectrum Omega')
 handles, labels = ax.get_legend_handles_labels()
-lgd = ax.legend(handles, labels, loc='upper left', bbox_to_anchor=(1.05, 1))
+# lgd = fig.legend(handles, labels, loc='upper left', bbox_to_anchor=(1.05, 1))
+
+# tmpimg = cStringIO.StringIO()
+# canvas.print_figure(tmpimg, bbox_extra_artists=(lgd,), bbox_inches='tight')
+# tmppdf = cStringIO.StringIO()
+# canvas.print_figure(tmppdf, format="pdf", bbox_extra_artists=(lgd,), bbox_inches='tight')
 
 tmpimg = cStringIO.StringIO()
-canvas.print_figure(tmpimg, bbox_extra_artists=(lgd,), bbox_inches='tight')
 tmppdf = cStringIO.StringIO()
-canvas.print_figure(tmppdf, format="pdf", bbox_extra_artists=(lgd,), bbox_inches='tight')
+canvas.print_figure(tmpimg, bbox_inches='tight')
+canvas.print_figure(tmppdf, format="pdf", bbox_inches='tight')
 
+w, h = figaspect(2.)
+figlegend = Figure(figsize=(w,h)) 
+lgncanvas = FigureCanvas(figlegend)
+lg = figlegend.gca()
+lg.legend(handles, labels, loc='upper left',)
+# lg.grid(b=False)
+lg.set_axis_off()
 
-
+lgnimg = cStringIO.StringIO()
+lgnpdf = cStringIO.StringIO()
+lgncanvas.print_figure(lgnimg, bbox_inches='tight')
+lgncanvas.print_figure(lgnpdf, format="pdf", bbox_inches='tight')
 
 print "<div class=\"row\">"
-print "<img src=\"data:image/png;base64,%s\" class=\"span8\"/>" % tmpimg.getvalue().encode("base64").strip()
-print "<a href=\"data:application/pdf;base64,%s\">Save PDF as</a>" % tmppdf.getvalue().encode("base64").strip()
+print "<img src=\"data:image/png;base64,%s\" class=\"span7\"/>" % tmpimg.getvalue().encode("base64").strip()
+print "<img src=\"data:image/png;base64,%s\" class=\"span4\"/>" % lgnimg.getvalue().encode("base64").strip()
 print "</div>"
+
 print "<div class=\"row\">"
-print "<pre class=\"span10\">"
-print(json.dumps(data, sort_keys=True, indent=4, separators=(',', ': ')))
+print "Save the pdf copy"
+print "<a href=\"data:application/pdf;base64,%s\">plot</a>" % tmppdf.getvalue().encode("base64").strip()
+print "<a href=\"data:application/pdf;base64,%s\">legend</a>" % lgnpdf.getvalue().encode("base64").strip()
+print "</div>"
+
+
+# print "<div class=\"row\">"
+# print "<pre class=\"span10\">"
+# print sys.path
+# print(json.dumps(data, sort_keys=True, indent=4, separators=(',', ': ')))
 # print(json.dumps(data['spectrums']))
 # print json.dumps(data['xmin'], sort_keys=True, indent=4, separators=(',', ': ')) 
 # print json.dumps(data['spectrums'], sort_keys=True, indent=4, separators=(',', ': ')) 
@@ -102,6 +125,6 @@ print(json.dumps(data, sort_keys=True, indent=4, separators=(',', ': ')))
 #     # print x
 # print xmin 
 # print xmax
-print "</pre>"
-print "</div>"
+# print "</pre>"
+# print "</div>"
 

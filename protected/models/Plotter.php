@@ -62,55 +62,6 @@ class Plotter extends CFormModel
     return false;
   }
   
-  public function loadModelConfig()
-  {
-    $models = array_filter($this->spectrums, array($this, 'toPlot'));
-    $this->spectrums = $models;
-    
-    $fh = fopen('matlab/para_input.m', 'w') or die("can't open file");
-    $content = ''; 
-
-    foreach ($this->attributes as $key => $value) 
-    {
-      if (!is_array($value)) 
-      {
-        $content = $content.$key." = ".$value.";\n\n";   
-      } elseif ($key == 'spectrums')
-      {
-        $size =sizeof($value);
-        $content = $content.'mod_number = '.$size.";\n\n";
-        $content = $content."namelist = cell(".$size.",1);\n\n";
-        $content = $content."funclist = cell(".$size.",1);\n\n";
-        $content = $content."colorlist = cell(".$size.",1);\n\n";
-        $content = $content."widthlist = cell(".$size.",1);\n\n";
-        $content = $content."stylelist = cell(".$size.",1);\n\n";
-        $content = $content.'parameters = cell('.$size.", 1);\n\n";
-
-        foreach ($value as $key=>$mod)
-        {
-          $model=Spectrum::model()->findByPk($mod['id']);
-          $content = $content.'namelist{'."$key+1".'} = '."'".$model->name."';\n\n";
-          $content = $content.'funclist{'."$key+1".'} = '."'".$model->func_name."';\n\n";
-          $content = $content.'colorlist{'."$key+1".'} = '."'".$mod['color']."';\n\n";
-          $content = $content.'widthlist{'."$key+1".'} = '.$mod['lineWidth'].";\n\n";
-          $content = $content.'stylelist{'."$key+1".'} = '."'".$mod['lineStyle']."';\n\n";
-          if (isset($mod['params'])) 
-          {
-            $content = $content.'parameters{'."$key+1".'} = cell(1,'.sizeof($mod['params']).");\n";  
-            foreach ($mod['params'] as $para)
-            {
-              $content = $content.'parameters{'."$key+1, ".$para['position'].'} = '.$para['value']."; \n";
-            }
-            $content = $content."\n";
-          }
-        }
-      }
-    }
-
-    fwrite($fh,$content);
-    fclose($fh);
-  }
-
   public function plot()
   {
     $models = array_filter($this->spectrums, array($this, 'toPlot'));

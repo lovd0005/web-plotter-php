@@ -30,20 +30,20 @@ INSERT INTO tbl_reference (spectrum_id, name) VALUES (2, 'arXiv:0806.2794v1[astr
 INSERT INTO tbl_spectrum (name, type_id, para_num) VALUES ('Double black holes Modell', 1, 2);
 INSERT INTO tbl_parameter (name, detail, spectrum_id, value, variable) VALUES ('M', '(chirp mass) [1MΘ, 2.5MΘ]:', 3, '8.7','M');
 INSERT INTO tbl_parameter (name, detail, spectrum_id, value, variable) VALUES ('λ', '(mass fraction) [0, 1MΘ-1]：', 3, '0.01','lamb');
-INSERT INTO tbl_reference (spectrum_id, name) VALUES (2, 'Short Intro to BBH');
-INSERT INTO tbl_reference (spectrum_id, name) VALUES (2, 'arXiv:1104.3565v2 [gr-qc]');
+INSERT INTO tbl_reference (spectrum_id, name) VALUES (3, 'Short Intro to BBH');
+INSERT INTO tbl_reference (spectrum_id, name) VALUES (3, 'arXiv:1104.3565v2 [gr-qc]');
 
 
 INSERT INTO tbl_spectrum (name, type_id, para_num) VALUES ('NS-BH Model', 1, 2);
 INSERT INTO tbl_parameter (name, detail, spectrum_id, value, variable) VALUES ('M', '(chirp mass) [1MΘ, 2.5MΘ]:', 4, '8.7','M');
 INSERT INTO tbl_parameter (name, detail, spectrum_id, value, variable) VALUES ('λ', '(mass fraction) [0, 1MΘ-1]：', 4, '0.01','lamb');
-INSERT INTO tbl_reference (spectrum_id, name) VALUES (3, 'Short Intro to NSBH');
-INSERT INTO tbl_reference (spectrum_id, name) VALUES (3, 'arXiv:1105.3565v2 [gr-qc]');
+INSERT INTO tbl_reference (spectrum_id, name) VALUES (4, 'Short Intro to NSBH');
+INSERT INTO tbl_reference (spectrum_id, name) VALUES (4, 'arXiv:1105.3565v2 [gr-qc]');
 
 INSERT INTO tbl_spectrum (name, type_id, para_num) VALUES ('r-mode Model', 1, 2);
 INSERT INTO tbl_parameter (name, detail, spectrum_id, value, variable) VALUES ('P0', '(period) [0.5ms, 10ms]:', 5, '1','P0');
 INSERT INTO tbl_parameter (name, detail, spectrum_id, value, variable) VALUES ('λ', '(mass fraction) [0, 1e-2MΘ-1]:', 5, '1E-05','lamb');
-INSERT INTO tbl_reference (spectrum_id, name) VALUES (3, 'Short Intro to r-mode');
+INSERT INTO tbl_reference (spectrum_id, name) VALUES (5, 'Short Intro to r-mode');
 
 
 INSERT INTO tbl_spectrum (name, type_id, para_num) VALUES ('bar-mode Model', 1, 2);
